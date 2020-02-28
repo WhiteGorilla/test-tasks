@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        let myRegex = /[?&]([^=#]+)=([^&#]*)/g;
+        let url = "http://localhost:63342/test/index.html?em=world&ew=book&ek=word&eqq=hook";
+        let params = {};
+        let match;
+
+        while (match = myRegex.exec(url)) {
+            params[match[1]] = match[2];
+        }
+
+        console.log(params);
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .even {
+            color: green;
+        }
+
+        .odd {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p></p>
+    <form>
+        <input type="number" id="item" required>
+        <button type="submit" id="set">Set</button>
+    </form>
+    <button id="clear">Clear</button>
+
+</body>
+
+<script>
+    const paragraph = document.querySelector('p');
+    const form = document.querySelector('form');
+    const input = document.getElementById('item');
+    const btnSet = document.getElementById('set');
+    const btnClear = document.getElementById('clear');
+
+    let data = JSON.parse(localStorage.getItem('num23'));
+
+    (function () {
+        pContent(data);
+        checkLength();
+    }());
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        localStorage.setItem('num23', input.value);
+        pContent(input.value);
+        input.value = '';
+        checkLength();
+    });
+
+
+    clear.addEventListener('click', function () {
+        localStorage.removeItem("num23");
+        pContent();
+    });
+
+    input.addEventListener('keyup', checkLength)
+
+    function checkLength(e) {
+        if (input.value.length > 0) {
+            btnSet.removeAttribute('disabled', '');
+        } else {
+            btnSet.setAttribute('disabled', '');
+        }
+    };
+
+    function pContent(value) {
+        const pClass = paragraph.classList;
+
+        if (value % 2 === 0) {
+            if (pClass.contains("odd")) {
+                pClass.remove("odd");
+            }
+            pClass.add("even");
+        } else {
+            if (pClass.contains("even")) {
+                pClass.remove("even");
+            }
+            pClass.add("odd");
+        }
+
+        paragraph.textContent = value;
+    };
+
+</script>
+
+</html>

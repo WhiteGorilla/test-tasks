@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        let textString = "text text text .///.,/.,/, ,/., ,/.,/., text";
+
+        function maxRecurringChar(text) {
+            let objectFromText = {};
+            let maxValue = 0;
+            let maxSymbol = {};
+
+            for (let textSymbol of text) {
+                if (objectFromText.hasOwnProperty(textSymbol)) {
+                    objectFromText[textSymbol]++;
+                } else {
+                    objectFromText[textSymbol] = 1;
+                }
+            }
+
+            for (let objectSymbol in objectFromText) {
+
+                if (objectFromText[objectSymbol] >= maxValue) {
+                    maxValue = objectFromText[objectSymbol];
+                    maxSymbol[objectSymbol] = maxValue;
+                }
+            }
+
+            return maxSymbol;
+        };
+
+        console.log(maxRecurringChar(textString));
+
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

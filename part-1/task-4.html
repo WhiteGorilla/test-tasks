@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <section>
+
+    </section>
+
+    <script>
+
+        let myRequest = new XMLHttpRequest();
+        let myResponse = {};
+        let section = document.querySelector('section');
+
+        myRequest.open("GET", "http://54.39.188.42/", true);
+        myRequest.onload = function () {
+            getData(myRequest.response);
+
+        }
+        myRequest.send(null);
+
+        function getData(data) {
+            myResponse = JSON.parse(window.atob(data));
+
+            for (const item of myResponse) {
+                let product = document.createElement('div');
+                product.className = "product";
+                section.appendChild(product);
+
+                for (const key in item) {
+                    let param = document.createElement('div');
+                    param.className = key;
+                    product.appendChild(param);
+
+                    if (typeof item[key] == "object") {
+                        checkOtions(item[key], param)
+
+                    } else if (key == "image") {
+                        let image = document.createElement('img');
+                        image.src = item[key];
+                        param.appendChild(image);
+
+                    } else if (item.hasOwnProperty(key)) {
+                        const element = item[key];
+                        if (key == "price") {
+                            param.innerHTML = Number(element).toFixed(2);
+                        } else {
+                            param.innerHTML = element;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        function checkOtions(key, param) {
+            for (const options of key) {
+                for (const option in options) {
+                    let detail = document.createElement('div');
+                    detail.className = 'detail ' + option;
+                    param.appendChild(detail);
+
+                    if (options.hasOwnProperty(option)) {
+                        const element = options[option];
+                        detail.innerHTML = element;
+                    }
+                }
+            }
+        }
+
+    </script>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px;
+        }
+
+        .product {
+            padding: 20px;
+            width: 19%;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+
+        .product img {
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        .price,
+        .currency {
+            display: inline-block;
+            font-weight: 900;
+            font-size: 1.5rem;
+        }
+    </style>
+</body>
+
+</html>
