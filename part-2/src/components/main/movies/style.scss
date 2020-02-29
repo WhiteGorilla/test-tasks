@@ -1,0 +1,41 @@
+.movie {
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+
+    .info {
+        padding-left: 20px;
+    }
+
+    .poster {
+        width: 150px;
+        height: 200px;
+        flex-shrink: 0;
+    }
+
+    h3 {
+        margin-top: 0;
+        text-transform: capitalize;
+    }
+
+    small {
+        background: #eee;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-right: 10px;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+form {
+    padding: 40px 0 20px;
+    text-align: center;
+}

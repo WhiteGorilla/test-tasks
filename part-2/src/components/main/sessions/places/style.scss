@@ -1,0 +1,19 @@
+.places {
+  display: flex;
+}
+
+.place {
+  padding: 10px;
+  background: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2px;
+
+  &.active {
+    background: rgb(75, 206, 125);
+
+    &:hover {
+      background: rgb(75, 110, 206);
+    }
+  }
+}
